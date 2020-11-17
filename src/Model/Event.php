@@ -10,7 +10,7 @@ class Event
 {
     const RECUR_WEEKLY = 'WEEKLY';
     const RECUR_ONCE = 'ONCE';
-    const STATUS_SCHEDULED = 1;
+    const STATUS_SCHEDULED = 1; // unsure of the meaning of these codes so far, assuming 1 is "scheduled"
     const ATTENDEE_PROFICIENCY_BEGINNER = 'BEGINNER';
     const ATTENDEE_PROFICIENCY_INTERMEDIATE = 'INTERMEDIATE';
     const ATTENDEE_PROFICIENCY_ADVANCED = 'ADVANCED';

@@ -6,6 +6,7 @@ namespace Test;
 use Mickadoo\DuolingoEvents\ApiFactory;
 use Mickadoo\DuolingoEvents\EventsApi;
 use Mickadoo\DuolingoEvents\Model\Event;
+use Mickadoo\DuolingoEvents\Model\LanguageCodes;
 use Mickadoo\DuolingoEvents\Request\EventRequest;
 use PHPUnit\Framework\TestCase;
 
@@ -23,7 +24,7 @@ class EventsIntegrationTest extends TestCase
     {
         $api = $this->getApi();
         $request = new EventRequest();
-        $request->setLanguageCodes(['fr']);
+        $request->setLanguageCodes([LanguageCodes::FRENCH]);
         $results = $api->getEvents($request);
         $allLanguages = [];
         foreach ($results as $result) {
