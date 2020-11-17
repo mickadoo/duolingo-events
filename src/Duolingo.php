@@ -9,10 +9,6 @@ use Mickadoo\Duolingo\Model\Event;
 use Mickadoo\Duolingo\Request\AbstractRequest;
 use Mickadoo\Duolingo\Request\EventRequest;
 use Symfony\Component\Serializer\SerializerInterface;
-use function array_merge;
-use function http_build_query;
-use function json_decode;
-use function json_encode;
 
 class Duolingo
 {
@@ -26,6 +22,10 @@ class Duolingo
         $this->serializer = $serializer;
     }
 
+    /**
+     * @param EventRequest $request
+     * @return Event[]
+     */
     public function getEvents(EventRequest $request): array
     {
         return $this->getResultsForPaginatedRequest($request, Event::class);
