@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace Mickadoo\Duolingo\Request;
+namespace Mickadoo\DuolingoEvents\Request;
 
 use \DateTime;
 

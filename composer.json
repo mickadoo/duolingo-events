@@ -1,6 +1,6 @@
 {
-    "name": "mickadoo/duolingo",
-    "description": "PHP API Wrapper for the Duolingo API",
+    "name": "mickadoo/duolingo-events",
+    "description": "PHP API Wrapper for the Duolingo Events API",
     "type": "library",
     "require": {
         "php": "^7.4",
@@ -11,7 +11,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Mickadoo\\Duolingo\\": "src"
+            "Mickadoo\\DuolingoEvents\\": "src"
         }
     },
     "require-dev": {

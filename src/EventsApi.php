@@ -2,15 +2,15 @@
 
 declare(strict_types = 1);
 
-namespace Mickadoo\Duolingo;
+namespace Mickadoo\DuolingoEvents;
 
 use GuzzleHttp\Client;
-use Mickadoo\Duolingo\Model\Event;
-use Mickadoo\Duolingo\Request\AbstractRequest;
-use Mickadoo\Duolingo\Request\EventRequest;
+use Mickadoo\DuolingoEvents\Model\Event;
+use Mickadoo\DuolingoEvents\Request\AbstractRequest;
+use Mickadoo\DuolingoEvents\Request\EventRequest;
 use Symfony\Component\Serializer\SerializerInterface;
 
-class Duolingo
+class EventsApi
 {
     private Client $client;
     private SerializerInterface $serializer;

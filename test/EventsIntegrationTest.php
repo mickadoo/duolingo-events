@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace Test;
 
 use GuzzleHttp\Client;
-use Mickadoo\Duolingo\Duolingo;
-use Mickadoo\Duolingo\Model\Event;
-use Mickadoo\Duolingo\Request\EventRequest;
+use Mickadoo\DuolingoEvents\EventsApi;
+use Mickadoo\DuolingoEvents\Model\Event;
+use Mickadoo\DuolingoEvents\Request\EventRequest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
@@ -38,12 +38,12 @@ class EventsIntegrationTest extends TestCase
         $this->assertEquals('fr', $allLanguages[0]);
     }
 
-    protected function getApi(): Duolingo
+    protected function getApi(): EventsApi
     {
         $encoders = [new JsonEncoder()];
         $normalizers = [new ObjectNormalizer()];
         $serializer = new Serializer($normalizers, $encoders);
 
-        return new Duolingo(new Client(), $serializer);
+        return new EventsApi(new Client(), $serializer);
     }
 }

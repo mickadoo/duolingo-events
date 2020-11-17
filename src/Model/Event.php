@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Mickadoo\Duolingo\Model;
+namespace Mickadoo\DuolingoEvents\Model;
 
 use \DateTime;
 
