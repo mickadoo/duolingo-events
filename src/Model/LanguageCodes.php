@@ -9,4 +9,8 @@ interface LanguageCodes
     const JAPANESE = 'jp';
     const ENGLISH = 'en';
     const ITALIAN = 'it';
+    const PORTUGUESE = 'pt';
+    const GERMAN = 'de';
+    const DUTCH = 'nl-NL';
+    const FRENCH = 'fr';
 }
