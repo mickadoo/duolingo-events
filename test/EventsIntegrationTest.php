@@ -3,14 +3,11 @@ declare(strict_types=1);
 
 namespace Test;
 
-use GuzzleHttp\Client;
+use Mickadoo\DuolingoEvents\ApiFactory;
 use Mickadoo\DuolingoEvents\EventsApi;
 use Mickadoo\DuolingoEvents\Model\Event;
 use Mickadoo\DuolingoEvents\Request\EventRequest;
 use PHPUnit\Framework\TestCase;
-use Symfony\Component\Serializer\Encoder\JsonEncoder;
-use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Serializer;
 
 class EventsIntegrationTest extends TestCase
 {
@@ -40,10 +37,6 @@ class EventsIntegrationTest extends TestCase
 
     protected function getApi(): EventsApi
     {
-        $encoders = [new JsonEncoder()];
-        $normalizers = [new ObjectNormalizer()];
-        $serializer = new Serializer($normalizers, $encoders);
-
-        return new EventsApi(new Client(), $serializer);
+        return ApiFactory::getEventsApi();
     }
 }
