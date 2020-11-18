@@ -95,6 +95,16 @@ class LanguageCodes
         );
     }
 
+    public static function getCodeForDisplayName(string $name): string
+    {
+        $codesToNames = static::getCodesToNames();
+        if (in_array($name, $codesToNames)) {
+            return array_search($name, $codesToNames);
+        }
+
+        throw new RuntimeException(sprintf('Cannot find language with name "%s"', $name));
+    }
+
     public static function getDisplayNameForCode(string $code): string
     {
         switch ($code) {
