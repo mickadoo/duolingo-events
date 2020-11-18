@@ -55,6 +55,7 @@ class LanguageCodes
             self::PORTUGUESE,
             self::GERMAN,
             self::DUTCH,
+            self::FRENCH,
             self::KOREAN,
             self::CHINESE,
             self::RUSSIAN,
@@ -111,6 +112,8 @@ class LanguageCodes
                 return 'German';
             case self::DUTCH:
                 return 'Dutch';
+            case self::FRENCH:
+                return 'French';
             case self::KOREAN:
                 return 'Korean';
             case self::CHINESE:
