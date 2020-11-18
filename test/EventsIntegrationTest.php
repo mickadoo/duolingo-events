@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Test;
 
+use DateTime;
 use Mickadoo\DuolingoEvents\ApiFactory;
 use Mickadoo\DuolingoEvents\EventsApi;
 use Mickadoo\DuolingoEvents\Model\Event;
@@ -34,6 +35,17 @@ class EventsIntegrationTest extends TestCase
 
         $this->assertCount(1, $allLanguages);
         $this->assertEquals('fr', $allLanguages[0]);
+    }
+
+    public function testDateWillBeSet()
+    {
+        $api = $this->getApi();
+        $request = new EventRequest();
+        $request->setEndRange(new DateTime('tomorrow'));
+        $results = $api->getEvents($request);
+        foreach ($results as $result) {
+            $this->assertNotNull($result->getEventStart());
+        }
     }
 
     protected function getApi(): EventsApi
