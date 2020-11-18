@@ -8,7 +8,7 @@ use \RuntimeException;
 class LanguageCodes
 {
     const SPANISH = 'es';
-    const JAPANESE = 'jp';
+    const JAPANESE = 'ja';
     const ENGLISH = 'en';
     const ITALIAN = 'it';
     const PORTUGUESE = 'pt';
