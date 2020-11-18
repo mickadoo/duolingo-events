@@ -191,4 +191,9 @@ class Event
     {
         $this->instructionToJoin = $instructionToJoin;
     }
+
+    public function getDuolingoLink(): string
+    {
+        return sprintf('https://events.duolingo.com/event/%s', $this->eventId);
+    }
 }
