@@ -59,6 +59,7 @@ class LanguageCodes
             self::KOREAN,
             self::CHINESE,
             self::RUSSIAN,
+            self::HINDI,
             self::ARABIC,
             self::TURKISH,
             self::LATIN,
@@ -130,6 +131,8 @@ class LanguageCodes
                 return 'Chinese';
             case self::RUSSIAN:
                 return 'Russian';
+            case self::HINDI:
+                return 'Hindi';
             case self::ARABIC:
                 return 'Arabic';
             case self::TURKISH:
