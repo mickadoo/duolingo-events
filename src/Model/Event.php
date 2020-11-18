@@ -23,7 +23,7 @@ class Event
     private array $hostIds = [];
     private bool $isHidden = false;
     private array $languages = [];
-    private string $link = '';
+    private string $onlineLink = '';
     private string $recurrence_pattern = self::RECUR_ONCE;
     private DateTime $eventStart;
     private DateTime $eventStartLocalTime;
@@ -112,14 +112,14 @@ class Event
         $this->languages = $languages;
     }
 
-    public function getLink(): string
+    public function getOnlineLink(): string
     {
-        return $this->link;
+        return $this->onlineLink;
     }
 
-    public function setLink(string $link): void
+    public function setOnlineLink(string $onlineLink): void
     {
-        $this->link = $link;
+        $this->onlineLink = $onlineLink;
     }
 
     public function getRecurrencePattern(): string

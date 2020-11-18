@@ -19,6 +19,9 @@ class EventDenormalizer extends ObjectNormalizer
         if (!empty($data['start_date'])) {
             $event->setEventStartLocalTime(new DateTime($data['start_date_local']));
         }
+        if (!empty($data['instructions_to_join'])) {
+            $event->setInstructionToJoin($data['instructions_to_join']);
+        }
 
         return $event;
     }
