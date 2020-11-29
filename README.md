@@ -2,6 +2,8 @@
 
 This package allows calling the Duolingo Events API.
 
+![PHP Composer](https://github.com/mickadoo/duolingo-events/workflows/PHP%20Composer/badge.svg)
+
 ## Usage
 
 First run `composer req mickadoo/duolingo-events` in your project.
