@@ -5,6 +5,7 @@ namespace Mickadoo\DuolingoEvents\Normalizer;
 
 use DateTime;
 use Mickadoo\DuolingoEvents\Model\Event;
+use Mickadoo\DuolingoEvents\Model\User;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class EventDenormalizer extends ObjectNormalizer
@@ -21,6 +22,12 @@ class EventDenormalizer extends ObjectNormalizer
         }
         if (!empty($data['instructions_to_join'])) {
             $event->setInstructionToJoin($data['instructions_to_join']);
+        }
+        $hostsData = $data['hosts'] ?? [];
+        foreach ($hostsData as $hostData) {
+            /** @var User $host */
+            $host = parent::denormalize($hostData, User::class, 'json');
+            $event->addHost($host);
         }
 
         return $event;

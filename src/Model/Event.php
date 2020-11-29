@@ -32,6 +32,11 @@ class Event
     private string $title = '';
     private string $instructionToJoin = '';
 
+    /**
+     * @var User[]
+     */
+    private array $hosts = []; // only set on specific event requests, not collection request
+
     public function getAttendeeLimit(): int
     {
         return $this->attendeeLimit;
@@ -195,5 +200,15 @@ class Event
     public function getDuolingoLink(): string
     {
         return sprintf('https://events.duolingo.com/event/%s', $this->eventId);
+    }
+
+    public function getHosts(): array
+    {
+        return $this->hosts;
+    }
+
+    public function addHost(User $host): void
+    {
+        $this->hosts[] = $host;
     }
 }

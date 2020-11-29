@@ -7,6 +7,7 @@ use GuzzleHttp\Client;
 use Mickadoo\DuolingoEvents\Model\Event;
 use Mickadoo\DuolingoEvents\Request\AbstractRequest;
 use Mickadoo\DuolingoEvents\Request\EventRequest;
+use Mickadoo\DuolingoEvents\Request\EventsRequest;
 use Symfony\Component\Serializer\SerializerInterface;
 
 class EventsApi
@@ -22,15 +23,24 @@ class EventsApi
     }
 
     /**
-     * @param EventRequest $request
+     * @param EventsRequest $request
      * @return Event[]
      */
-    public function getEvents(EventRequest $request): array
+    public function getEvents(EventsRequest $request): array
     {
         return $this->getResultsForPaginatedRequest($request, Event::class);
     }
 
-    protected function getResultsForPaginatedRequest(EventRequest $request, string $modelClass): array
+    public function getEvent(string $id): Event
+    {
+        $response = $this->fetchSingleResult(new EventRequest($id));
+        /** @var Event $event */
+        $event = $this->serializer->deserialize($response->getBody()->getContents(), Event::class, 'json');
+
+        return $event;
+    }
+
+    protected function getResultsForPaginatedRequest(EventsRequest $request, string $modelClass): array
     {
         $resultsRaw = $this->fetchAllPaginatedResults($request);
         $results = [];
@@ -40,6 +50,13 @@ class EventsApi
         }
 
         return $results;
+    }
+
+    private function fetchSingleResult(AbstractRequest $request)
+    {
+        $uri = $this->baseUrl . $request->getPath() . '?' . http_build_query($request->getQueryParams());
+
+        return $this->client->get($uri);
     }
 
     private function fetchAllPaginatedResults(AbstractRequest $request): array

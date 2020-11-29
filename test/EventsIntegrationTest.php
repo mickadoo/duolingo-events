@@ -10,7 +10,7 @@ use Mickadoo\DuolingoEvents\EventsApi;
 use Mickadoo\DuolingoEvents\Model\Event;
 use Mickadoo\DuolingoEvents\Model\LanguageCodes;
 use Mickadoo\DuolingoEvents\Normalizer\EventDenormalizer;
-use Mickadoo\DuolingoEvents\Request\EventRequest;
+use Mickadoo\DuolingoEvents\Request\EventsRequest;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Serializer;
@@ -20,15 +20,22 @@ class EventsIntegrationTest extends TestCase
     public function testWillFetchEvents()
     {
         $api = $this->getApi();
-        $events = $api->getEvents(new EventRequest());
+        $events = $api->getEvents(new EventsRequest());
 
         $this->assertInstanceOf(Event::class, $events[0]);
+    }
+
+    public function testWillFetchSingleEventWithHost()
+    {
+        $api = $this->getApi();
+        $event = $api->getEvent('ac10a8c7-e6e8-4acc-ac0d-5fd0274ab3df');
+        $this->assertNotEmpty($event->getHosts());
     }
 
     public function testWillFetchOnlyCertainLanguages()
     {
         $api = $this->getApi();
-        $request = new EventRequest();
+        $request = new EventsRequest();
         $request->setLanguageCodes([LanguageCodes::FRENCH]);
         $results = $api->getEvents($request);
         $allLanguages = [];
@@ -44,7 +51,7 @@ class EventsIntegrationTest extends TestCase
     public function testDateWillBeSet()
     {
         $api = $this->getApiWithSampleResponse();
-        $request = new EventRequest();
+        $request = new EventsRequest();
         $results = $api->getEvents($request);
         foreach ($results as $result) {
             $this->assertNotNull($result->getEventStart());
@@ -54,7 +61,7 @@ class EventsIntegrationTest extends TestCase
     public function testAllPropertiesWillBeSet()
     {
         $api = $this->getApiWithSampleResponse();
-        $request = new EventRequest();
+        $request = new EventsRequest();
         $results = $api->getEvents($request);
         $event = $results[0];
         $this->assertEquals(100, $event->getAttendeeLimit());
