@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Mickadoo\DuolingoEvents\Model;
 
-use \RuntimeException;
+use RuntimeException;
 
 class LanguageCodes
 {
@@ -44,6 +44,24 @@ class LanguageCodes
     const KLINGON = 'tlh';
     const NAVAJO = 'nv';
     const ESPERANTO = 'eo';
+
+    public static function getCodeForDisplayName(string $name): string
+    {
+        $codesToNames = static::getCodesToNames();
+        if (in_array($name, $codesToNames)) {
+            return array_search($name, $codesToNames);
+        }
+
+        throw new RuntimeException(sprintf('Cannot find language with name "%s"', $name));
+    }
+
+    public static function getCodesToNames(): array
+    {
+        return array_combine(
+            static::getLanguageCodes(),
+            array_map(fn($code) => static::getDisplayNameForCode($code), static::getLanguageCodes())
+        );
+    }
 
     public static function getLanguageCodes()
     {
@@ -86,24 +104,6 @@ class LanguageCodes
             self::NAVAJO,
             self::ESPERANTO,
         ];
-    }
-
-    public static function getCodesToNames(): array
-    {
-        return array_combine(
-            static::getLanguageCodes(),
-            array_map(fn($code) => static::getDisplayNameForCode($code), static::getLanguageCodes())
-        );
-    }
-
-    public static function getCodeForDisplayName(string $name): string
-    {
-        $codesToNames = static::getCodesToNames();
-        if (in_array($name, $codesToNames)) {
-            return array_search($name, $codesToNames);
-        }
-
-        throw new RuntimeException(sprintf('Cannot find language with name "%s"', $name));
     }
 
     public static function getDisplayNameForCode(string $code): string

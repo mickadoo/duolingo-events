@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Mickadoo\DuolingoEvents\Request;
 
-use \DateTime;
+use DateTime;
 
 class EventsRequest extends AbstractRequest
 {

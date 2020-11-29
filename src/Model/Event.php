@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Mickadoo\DuolingoEvents\Model;
 
-use \DateTime;
+use DateTime;
 
 class Event
 {

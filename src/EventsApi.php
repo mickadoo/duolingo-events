@@ -31,15 +31,6 @@ class EventsApi
         return $this->getResultsForPaginatedRequest($request, Event::class);
     }
 
-    public function getEvent(string $id): Event
-    {
-        $response = $this->fetchSingleResult(new EventRequest($id));
-        /** @var Event $event */
-        $event = $this->serializer->deserialize($response->getBody()->getContents(), Event::class, 'json');
-
-        return $event;
-    }
-
     protected function getResultsForPaginatedRequest(EventsRequest $request, string $modelClass): array
     {
         $resultsRaw = $this->fetchAllPaginatedResults($request);
@@ -50,13 +41,6 @@ class EventsApi
         }
 
         return $results;
-    }
-
-    private function fetchSingleResult(AbstractRequest $request)
-    {
-        $uri = $this->baseUrl . $request->getPath() . '?' . http_build_query($request->getQueryParams());
-
-        return $this->client->get($uri);
     }
 
     private function fetchAllPaginatedResults(AbstractRequest $request): array
@@ -75,6 +59,22 @@ class EventsApi
         }
 
         return $results;
+    }
+
+    public function getEvent(string $id): Event
+    {
+        $response = $this->fetchSingleResult(new EventRequest($id));
+        /** @var Event $event */
+        $event = $this->serializer->deserialize($response->getBody()->getContents(), Event::class, 'json');
+
+        return $event;
+    }
+
+    private function fetchSingleResult(AbstractRequest $request)
+    {
+        $uri = $this->baseUrl . $request->getPath() . '?' . http_build_query($request->getQueryParams());
+
+        return $this->client->get($uri);
     }
 
 }
