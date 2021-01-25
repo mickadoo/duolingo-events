@@ -3,7 +3,7 @@
     "description": "PHP API Wrapper for the Duolingo Events API",
     "type": "library",
     "require": {
-        "php": "^7.4",
+        "php": "^7.4|^8.0",
         "ext-json": "*",
         "guzzlehttp/guzzle": "^7.2",
         "symfony/serializer": "^5.1",
