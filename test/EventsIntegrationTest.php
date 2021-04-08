@@ -38,14 +38,9 @@ class EventsIntegrationTest extends TestCase
         $request = new EventsRequest();
         $request->setLanguageCodes([LanguageCodes::FRENCH]);
         $results = $api->getEvents($request);
-        $allLanguages = [];
         foreach ($results as $result) {
-            $allLanguages = array_merge($allLanguages, $result->getLanguages());
+            $this->assertContains(LanguageCodes::FRENCH, $result->getLanguages());
         }
-        $allLanguages = array_unique($allLanguages);
-
-        $this->assertCount(1, $allLanguages);
-        $this->assertEquals('fr', $allLanguages[0]);
     }
 
     public function testDateWillBeSet()

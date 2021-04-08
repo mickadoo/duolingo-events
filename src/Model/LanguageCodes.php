@@ -45,6 +45,7 @@ class LanguageCodes
     const NAVAJO = 'nv';
     const ESPERANTO = 'eo';
     const CATALAN = 'ca';
+    const GUARANI = 'gn';
 
     public static function getCodeForDisplayName(string $name): string
     {
@@ -105,6 +106,7 @@ class LanguageCodes
             self::NAVAJO,
             self::ESPERANTO,
             self::CATALAN,
+            self::GUARANI,
         ];
     }
 
@@ -187,6 +189,8 @@ class LanguageCodes
                 return 'Esperanto';
             case self::CATALAN:
                 return 'Catalan';
+            case self::GUARANI:
+                return 'Guarani';
         }
 
         throw new RuntimeException(sprintf('Cannot find language code "%s"', $code));
