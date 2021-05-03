@@ -17,4 +17,9 @@ class LanguageCodesTest extends TestCase
             $this->assertEquals($name, LanguageCodes::getDisplayNameForCode($code));
         }
     }
+
+    public function testWillIncludeNonStandardLanguagesLikeKlingon()
+    {
+        $this->assertEquals('Klingon', LanguageCodes::getDisplayNameForCode('tlh'));
+    }
 }

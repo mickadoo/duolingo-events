@@ -29,7 +29,13 @@ class LanguageCodes
 
     public static function getLanguageCodes(): array
     {
-        return ResourceBundle::getLocales('');
+        $locales = ResourceBundle::getLocales('');
+        $languages = array_map(function ($locale) {
+            return Locale::getPrimaryLanguage($locale);
+        }, $locales);
+        $extraLanguages = ['thk']; // Klingon
+
+        return array_unique(array_merge($languages, $extraLanguages));
     }
 
     public static function getDisplayNameForCode(string $code): string
