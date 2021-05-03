@@ -8,7 +8,6 @@ use GuzzleHttp\Psr7\Response;
 use Mickadoo\DuolingoEvents\ApiFactory;
 use Mickadoo\DuolingoEvents\EventsApi;
 use Mickadoo\DuolingoEvents\Model\Event;
-use Mickadoo\DuolingoEvents\Model\LanguageCodes;
 use Mickadoo\DuolingoEvents\Normalizer\EventDenormalizer;
 use Mickadoo\DuolingoEvents\Request\EventsRequest;
 use PHPUnit\Framework\TestCase;
@@ -36,10 +35,10 @@ class EventsIntegrationTest extends TestCase
     {
         $api = $this->getApi();
         $request = new EventsRequest();
-        $request->setLanguageCodes([LanguageCodes::FRENCH]);
+        $request->setLanguageCodes(['fr']);
         $results = $api->getEvents($request);
         foreach ($results as $result) {
-            $this->assertContains(LanguageCodes::FRENCH, $result->getLanguages());
+            $this->assertContains('fr', $result->getLanguages());
         }
     }
 
