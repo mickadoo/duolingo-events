@@ -5,6 +5,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-json": "*",
+        "ext-intl": "*",
         "guzzlehttp/guzzle": "^7.2",
         "symfony/serializer": "^5.1",
         "symfony/property-access": "^5.1"
