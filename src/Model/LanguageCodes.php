@@ -33,7 +33,7 @@ class LanguageCodes
         $languages = array_map(function ($locale) {
             return Locale::getPrimaryLanguage($locale);
         }, $locales);
-        $extraLanguages = ['thk']; // Klingon
+        $extraLanguages = ['tlh']; // Klingon
 
         return array_unique(array_merge($languages, $extraLanguages));
     }
