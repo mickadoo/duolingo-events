@@ -32,7 +32,7 @@ class Event
     private string $timezone = '';
     private string $title = '';
     private string $instructionToJoin = '';
-    private int $price;
+    private int $price = 0;
 
     /**
      * @var User[]
