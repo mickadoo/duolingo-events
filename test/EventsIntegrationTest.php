@@ -76,6 +76,14 @@ class EventsIntegrationTest extends TestCase
         $this->assertEquals('Intermediate French', $event->getTitle());
     }
 
+    public function testCostWillBeSet()
+    {
+        $api = $this->getApi();
+        $event = $api->getEvent('aa475d56-618c-41a9-9bb8-0db52d6bc9d2');
+
+        $this->assertEquals(600, $event->getPrice());
+    }
+
     protected function getApiWithSampleResponse(): EventsApi
     {
         $serializer = new Serializer([new EventDenormalizer()], [new JsonEncoder()]);

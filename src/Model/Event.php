@@ -32,6 +32,7 @@ class Event
     private string $timezone = '';
     private string $title = '';
     private string $instructionToJoin = '';
+    private int $price = 0;
 
     /**
      * @var User[]
@@ -211,5 +212,21 @@ class Event
     public function addHost(User $host): void
     {
         $this->hosts[] = $host;
+    }
+
+    /**
+     * @return int The price in US cents (e.g. 600 = $6)
+     */
+    public function getPrice(): int
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param int $price
+     */
+    public function setPrice(int $price): void
+    {
+        $this->price = $price;
     }
 }
